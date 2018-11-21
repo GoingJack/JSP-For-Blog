@@ -25,13 +25,13 @@ public class visitorlogin {
 			conn = sqlConnection.getCon();
 			if(conn==null)
 				return false;
-			String sql="select * from bk_visitor where visitorid=? and visitorpwd=?";
+			String sql="select * from Visitor_Information where VisitorId=? and VisitorPasswd=?";
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setString(1, user.getUserid());
 			ps.setString(2, user.getUserpwd());
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()){
-				if((user.getUserid().equals(rs.getString("visitorid")))&&(user.getUserpwd().equals(rs.getString("visitorpwd"))))
+				if((user.getUserid().equals(rs.getString("VisitorId")))&&(user.getUserpwd().equals(rs.getString("VisitorPasswd"))))
 				{
 					flag = true;
 				}

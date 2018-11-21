@@ -14,8 +14,8 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
 		//1.Session对象删除保存User对象 
-		request.getSession().removeAttribute("user"); 
-		response.sendRedirect("/nblog/IndexServlet"); 
+		request.getSession().removeAttribute("userid"); 
+		response.sendRedirect("/nblog/index.jsp"); 
 		} 
 	protected void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {

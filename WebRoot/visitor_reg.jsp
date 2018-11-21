@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+>
   </head>
   
   <body>
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</tr>
     		<tr>
     			<td colspan="2" align="center">
-    				<input type="submit" value="注册">
+    				<input type="submit" value="注册" onclick="isNull">
     				<input type="reset" value="重置">
   				</td>
   			</tr>

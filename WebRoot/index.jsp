@@ -5,7 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html >
   <head>
     <base href="<%=basePath%>">
     
@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
   </head>
   
-  <body>		
+  <body >		
     <center><h1>欢迎访问我的个人博客</h1><br>
     <h3><a href="root_login.jsp">博主登录</a></h3>
     <h3><a href="visitor_login.jsp">游客登录</a></h3>

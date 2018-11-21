@@ -20,7 +20,7 @@ public class visitorreg {
 		Connection conn=null;
 		try{
 			conn = sqlConnection.getCon();
-			String sql="insert into bk_visitor(visitorid,visitorpwd,visitorname)"+"values(?,?,?)";
+			String sql="insert into Visitor_Information(VisitorId,VisitorPasswd,VisitorName)"+"values(?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getUserid());
 			ps.setString(2, user.getUserpwd());

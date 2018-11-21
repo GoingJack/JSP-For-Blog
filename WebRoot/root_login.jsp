@@ -23,16 +23,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <a href="index.jsp">返回主页</a>
   	<center><h1>博主登录</h1></center>
     <form action="RootLoginServlet" method="post">
     <table align="center" width="500">
     <tr>
     	<td align="right" width="30%">用户名</td>
-    	<td><input type="text" name="rootid" class="box"></td>
+    	<td><input type="text" name="Username" class="box"></td>
     </tr>
     <tr>
     	<td align="right">密码</td>
-    	<td><input type="password" name="rootpwd" class="box"></td>
+    	<td><input type="password" name="PassWord" class="box"></td>
     </tr>
     <tr>
     	<td colspan="2" align="center">

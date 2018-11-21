@@ -2,6 +2,9 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 
 
@@ -10,7 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import dbcon.sqlConnection;
 
 
 import user.UserInfomation;
@@ -37,27 +41,51 @@ public class VisitorServlet extends HttpServlet {
 		//表单提交值
 		String visitorid = request.getParameter("visitorid");
 		String visitorpwd = request.getParameter("visitorpwd");
+		
 		PrintWriter out = response.getWriter();
 		//登录验证
 		if(visitorid == null || "".equals(visitorid)){    
-			out.print("用户id不能为空");
+			out.println("<script>alert('用户id不能为空')</script>");
+			out.println("<a href='visitor_login.jsp'>点击此处返回登陆界面</a>");
 		}
-		if(visitorpwd == null || "".equals(visitorpwd)){
-			out.print("密码不能为空");
+		else if(visitorpwd == null || "".equals(visitorpwd)){
+			out.println("<script>alert('密码不能为空')</script>");
+			out.println("<a href='visitor_login.jsp'>点击此处返回登陆界面</a>");
 		}
-		
+		else {
 		//用户名密码验证通过
 		UserInfomation visitor = new UserInfomation();      
 		visitor.setUserid(visitorid);      //设置userid
 		visitor.setUserpwd(visitorpwd);  //设置userpass
+		
+		//连接数据库
+		
+		try{
+		Connection conn=null;
+		conn=sqlConnection.getCon();
+		String sql = "select * from Root_admin";
+		PreparedStatement ps=conn.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
+		if(rs.next())
+		{
+			request.getSession().setAttribute("rootid", rs.getString("Username"));
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+			}
 		try {
 			boolean flag = visitorlogin.getinstance().checkVisitor(visitor);
+			System.out.println(flag);
 			if(flag){ //验证通过  
 		        request.getSession().setAttribute("userid", visitor.getUserid());//向会话对象写入数据
 		        response.sendRedirect("IndexServlet"); //跳转
 			}else{
-				out.print("登录失败");
-				response.sendRedirect("visitor_login.jsp");
+				System.out.println(flag);
+				out.print("<script type='text/javascript'>alert('用户名或者密码错误！');</script>");
+				System.out.println(flag);
+				out.println("<p>俩秒后返回登陆界面</p>");
+				//response.sendRedirect("visitor_login.jsp");
+				response.setHeader("refresh", "2;URL=visitor_login.jsp");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -66,7 +94,9 @@ public class VisitorServlet extends HttpServlet {
 			out.flush();
 			out.close();
 		}
+		}
 	}
+
 
 	/**
 	 * The doPost method of the servlet. <br>
@@ -89,6 +119,7 @@ public class VisitorServlet extends HttpServlet {
 		String visitorid = request.getParameter("visitorid");
 		String visitorpwd = request.getParameter("visitorpwd");
 		String visitorname = request.getParameter("visitorname");
+		String revisitorpwd=request.getParameter("revisitorpasswd");
 		
 		//将获取的表单值封装到用户信息对象中
 		
@@ -99,7 +130,25 @@ public class VisitorServlet extends HttpServlet {
 		boolean flag = visitorreg.getinstance().saveVisitor(visitor);	//将游客注册信息保存到数据库
 		PrintWriter out = response.getWriter();
 		//注册结果
-		if(flag){
+		if(visitorid==null||"".equals(visitorid))
+		{
+			out.println("<script>alert('用户id不能为空')</script>");
+			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
+			out.println("两秒后自动跳转到游客注册界面！！！");
+		}
+		else if (visitorpwd==null||"".equals(visitorpwd))
+		{
+			out.println("<script>alert('用户密码不能为空')</script>");
+			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
+			out.println("两秒后自动跳转到游客注册界面！！！");
+		}
+		else if (visitorpwd.equals(revisitorpwd))
+		{
+			out.println("<script>alert('俩次输入的密码不一致请重新输入')</script>");
+			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
+			out.println("两秒后自动跳转到游客注册界面！！！");
+		}
+		else if(flag){
 			out.println("注册成功");
 			response.setHeader("refresh","2;URL=visitor_login.jsp") ;
 			out.println("两秒后自动跳转到游客登录界面！！！");

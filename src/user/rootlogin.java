@@ -23,13 +23,13 @@ public class rootlogin {
 		boolean flag=false;
 		try{
 			conn = sqlConnection.getCon();
-			String sql="select * from bk_root where rootid=? and rootpwd=?";
+			String sql="select * from Root_admin where Username=? and PassWord=?";
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setString(1, user.getUserid());
 			ps.setString(2, user.getUserpwd());
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				if(rs.getString("rootid").equals(user.getUserid())&&rs.getString("rootpwd").equals(user.getUserpwd()))
+				if(rs.getString("Username").equals(user.getUserid())&&rs.getString("PassWord").equals(user.getUserpwd()))
 				{
 					flag=true;
 				}

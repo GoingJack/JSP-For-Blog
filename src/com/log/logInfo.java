@@ -1,14 +1,14 @@
 package com.log;
 
 public class logInfo {
-	private	int page;
+	private	int logid;
 	private String title;
 	private String details;
-	public int getPage(){
-		return page;
+	public int getlogid(){
+		return logid;
 	}
-	public void setPage(int page){
-		this.page=page;
+	public void setlogid(int logid){
+		this.logid=logid;
 	}
 	public String gettitle(){
 		return title;

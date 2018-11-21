@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" import="com.log.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" import="com.log.*" import="java.sql.*" pageEncoding="GB18030"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'logshow.jsp' starting page</title>
+    <title>ÈÕÖ¾</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,63 +23,77 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <a href="LogoutServlet">ÍË³ö</a>
+  		<% request.setCharacterEncoding("GB18030");
+			response.setCharacterEncoding("GB18030");%>
   <center>
 		<%
 		if(request.getSession().getAttribute("userid")==null){		
-			// ç”¨æˆ·æœªç™»é™†ï¼Œæç¤ºç”¨æˆ·ç™»é™†ï¼Œå¹¶è·³è½¬
-			response.setHeader("refresh","2;URL=login.jsp") ;
+			// ÓÃ»§Î´µÇÂ½£¬ÌáÊ¾ÓÃ»§µÇÂ½£¬²¢Ìø×ª
+			response.setHeader("refresh","2;URL=index.jsp") ;
 		%>
-			æ‚¨è¿˜æœªç™»é™†ï¼Œè¯·å…ˆç™»é™†ï¼ï¼ï¼<br>
-			ä¸¤ç§’åŽè‡ªåŠ¨è·³è½¬åˆ°ç™»é™†çª—å£ï¼ï¼ï¼<br>
-			å¦‚æžœæ²¡æœ‰è·³è½¬ï¼Œè¯·æŒ‰<a href="login.jsp">è¿™é‡Œ</a>ï¼ï¼ï¼<br>
+			Äú»¹Î´µÇÂ½£¬ÇëÏÈµÇÂ½£¡£¡£¡<br>
+			Á½Ãëºó×Ô¶¯Ìø×ªµ½µÇÂ½´°¿Ú£¡£¡£¡<br>
+			Èç¹ûÃ»ÓÐÌø×ª£¬Çë°´<a href="index.jsp">ÕâÀï</a>£¡£¡£¡<br>
 	<%
 		}
-	%>
-	<%// æŽ¥æ”¶å‚æ•°
-			request.setCharacterEncoding("UTF-8");
-			response.setCharacterEncoding("UTF-8");
+		else
+		{// ½ÓÊÕ²ÎÊý
 			String title = null;
 			String log_details=null;
+			int logid=-1;
 			List reviews=null;
-			try{
-				title = request.getParameter("title") ;
-			}catch(Exception e){
-				}
 			logInfo log = null ;
 			try{
+				logid = Integer.parseInt(request.getParameter("logid"));
+				if(request.getAttribute("logid")!=null)
+					logid = Integer.parseInt((String)request.getAttribute("logid"));	
+			}catch(Exception e){
+				}
+			try{
 				log_behavior log_b=new log_behavior();
-				log_details = log_b.getBytitle(title);
-				reviews=log_b.queryreview(title);
+				log = log_b.getBylogid(logid);
+				log_details = log.getdetails();
+				title = log.gettitle();
+				reviews=log_b.queryreview(logid);
 			}catch(Exception e){
 				e.printStackTrace();
 				} %>
 	<form action="logshow.jsp" method="post">
-		<table  style="width: 700px; ">
+		<table  style="width: 700px; " border=3>
 		<tr>
-			<td align="center" border=3 colspan="2"><h3><%=title%></h3></td>
+			<td align="center" colspan="2"><h3><%=title%></h3></td>
 		</tr>
 		<tr>
-			<td align="center" colspan="2"><%=log_details %></td>
+			<td align="center" colspan="2"><textarea style="width: 550px; height: 300px" readonly><%=log_details %></textarea></td>
 		</tr>
 		<tr>
-			<td align="center" border=3 colspan="2"><h4>è¯„è®ºåˆ—è¡¨</h4></td>
+			<td align="center" colspan="2"><h4>ÆÀÂÛÁÐ±í</h4></td>
 		</tr>
-		<tr>
-			<td align="left" width="70%">
 			<%
 				for(int i=0;i<reviews.size();i++){
 				log_review log_r = (log_review)reviews.get(i);
-				// è¿›è¡Œå¾ªçŽ¯æ‰“å°ï¼Œæ‰“å°å‡ºæ‰€æœ‰çš„å†…å®¹ï¼Œä»¥è¡¨æ ¼å½¢å¼
-				// ä»Žæ•°æ®åº“ä¸­å–å‡ºå†…å®¹
-				String details = log_r.getdetails() ;
+				// ½øÐÐÑ­»·´òÓ¡£¬´òÓ¡³öËùÓÐµÄÄÚÈÝ£¬ÒÔ±í¸ñÐÎÊ½
+				// ´ÓÊý¾Ý¿âÖÐÈ¡³öÄÚÈÝ
+				String review_details = log_r.getreview_details() ;
+				String review_id = log_r.getreview_id();
+				String review_time = log_r.getreview_time();
 			%>
-				<%=details %>
-				</td>
-				<td width="30%" align="right"><%String id = log_r.getid();%><%=id %></td>
-				<%}%>
-		</tr>
+			<tr>
+				<td align="left" width="70%"><%=review_details %></td>
+				<td width="30%" align="left"><%=review_id %>ÓÚ<%=review_time%>µÄÆÀÂÛ</td>
+			<%}%>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><a href="review_add.jsp?logid=<%=logid %>">Ð´ÆÀÂÛ</a></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2">
+				<a href="log.jsp">»Øµ½ÈÕÖ¾Ä¿Â¼</a>
+			</tr>
 		</table>
 	</form>
+	<%} %>
 	</center>
   </body>
 </html>

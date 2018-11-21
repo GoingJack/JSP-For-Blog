@@ -9,8 +9,8 @@ public class sqlConnection {
 		try { 
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 			String user = "sa"; 
-			String pwd = "sa"; 
-			String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=db_database9"; 
+			String pwd = "1"; 
+			String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=MyDatabase"; 
 			conn = DriverManager.getConnection(url, user, pwd); 
 			} catch (Exception e) { 
 				e.printStackTrace(); 

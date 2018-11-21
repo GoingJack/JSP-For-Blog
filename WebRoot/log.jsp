@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" import="com.log.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" import="com.log.*" pageEncoding="GB18030"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>我的日志</title>
+    <title>�ҵ���־</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,53 +19,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
   </head>
-  
+	
   <body>
+  <a href="LogoutServlet">�˳�</a>
+  <%	request.setCharacterEncoding("GB18030");
+  		response.setCharacterEncoding("GB18030"); %>
   <center>
   	
   	<% 
-  		request.setCharacterEncoding("UTF-8");
-  		response.setCharacterEncoding("UTF-8");
   		if(request.getSession().getAttribute("userid")==null)
 		{
-			// 用户未登陆
+			// �û�δ��½
 			response.setHeader("refresh","2;URL=index.jsp") ;
 	%>
 	
-			您还未登陆，请先登陆！！！<br>
-			两秒后自动跳转到登陆窗口！！！<br>
-			如果没有跳转，请按<a href="root_login.jsp">这里</a>！！！<br>
-	<%	}%>
-	<%
-		// 如果有内容，则修改变量i，如果没有，则根据i的值进行无内容提示
+			����δ��½�����ȵ�½������<br>
+			������Զ���ת����½���ڣ�����<br>
+			���û����ת���밴<a href="index.jsp">����</a>������<br>
+	<%	}
+	else{
 			List all = null ;
-			try
-			{
+			try	{
 				log_behavior log_b=new log_behavior();
 				all=log_b.queryAll();
-			}
-			catch(Exception e)
-			{
+			}catch(Exception e){
 				System.out.println(e) ;
-			}
-	%>
-    <form action="log.jsp" method="post">
-    	<table style="width: 500px;" border=3>
-    		<tr>
-    			<td align="center">日志列表</td>
-    		</tr>
-    			<%
-				for(int t=0;t<all.size();t++){
-				logInfo log = (logInfo)all.get(t);
-				// 进行循环打印，打印出所有的内容，以表格形式
-				// 从数据库中取出内容
-				String title = log.gettitle() ;
-	%>
-				<tr>
-					<td align="left" width="80%"><a href="logshow.jsp?title=<%=title%>"><%=title%></a></td>
-				</tr>
-			<% } %>
-  </body>
+				}
+			%>
+    	<form action="log.jsp" method="post">
+    		<table style="width: 500px;" border=3>
+    			<tr>
+    				<td align="center">��־�б�</td>
+    			</tr>
+    				<%
+					for(int t=0;t<all.size();t++){
+					logInfo log = (logInfo)all.get(t);
+					// ����ѭ����ӡ����ӡ�����е����ݣ��Ա�����ʽ
+					// �����ݿ���ȡ������
+					String title = log.gettitle() ;
+					int logid = log.getlogid();
+					%>
+					<tr>
+						<td align="left" width="80%"><a href="logshow.jsp?logid=<%=logid%>"><%=title%></a></td>
+					</tr>
+				<% } %>
+					<%
+					 if(request.getSession().getAttribute("userid").equals(request.getSession().getAttribute("rootid"))){
+					%>
+					<tr>
+						<td align="center"><a href="logadd.jsp">д��־</a></td>
+					</tr>
+					<%} %>
+				</table>
+			</form>
+	</center>
+	<% }%>	
+  	</body>
 </html>

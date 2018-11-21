@@ -1,28 +1,39 @@
 package com.log;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class log_review {
-	private String title;
-	private String id;
-	private String details;
-	public String gettitle(){
-		return title;
+	private int logid;
+	private String review_id;
+	private String review_details;
+	private String review_time;
+	public int getlogid(){
+		return logid;
 	}
-	public void settitle(String title){
-		this.title=title;
+	public void setlogid(int logid){
+		this.logid=logid;
 	}
-	public String getid(){
-		return id;
+	public String getreview_id(){
+		return review_id;
 	}
-	public void setid(String id){
-		this.id=id;
+	public void setreview_id(String review_id){
+		this.review_id=review_id;
 	}
-	public String getdetails(){
-		return details;
+	public String getreview_details(){
+		return review_details;
 	}
-	public void setdetails(String details){
-		this.details=details;
+	public void setreview_details(String review_details){
+		this.review_details=review_details;
 	}
-	public String toString(){
-		return "title"+title+",id"+id+",details"+details;
+	public String getreview_time(){
+		return review_time;
+	}
+	public void setreview_time(Timestamp review_time){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date= df.format(review_time);
+		System.out.println(date);
+		this.review_time=date;
 	}
 }

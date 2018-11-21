@@ -15,8 +15,9 @@ public class log_behavior {
 	     List<logInfo> list = new ArrayList<logInfo>();
 	     while(rs.next()){
 	    	  logInfo log = new logInfo();
-	          log.settitle(rs.getString("logtitle"));
-	          log.setdetails(rs.getString("rootlog"));
+	    	  log.setlogid(rs.getInt("Text_Id"));
+	          log.settitle(rs.getString("Text_Title"));
+	          log.setdetails(rs.getString("Text_Content"));
 	          list.add(log);
 	     }
 	     return list;
@@ -25,7 +26,7 @@ public class log_behavior {
 	{
 		Connection conn = null;
 		conn=sqlConnection.getCon();
-		String sql="select * from bk_log";
+		String sql="select * from Text";
 		PreparedStatement ps=conn.prepareStatement(sql);
 		ResultSet rs=ps.executeQuery();
 		
@@ -34,17 +35,17 @@ public class log_behavior {
 		return list;
 	}
 		
-	public List<log_review> queryreview(String title) throws Exception{
+	public List<log_review> queryreview(int logid) throws Exception{
 		Connection conn=null;
 		conn=sqlConnection.getCon();
-		String sql="select * from bk_lm where logtitle=?";
+		String sql="select * from Comment where Text_Id=? order by Comment_Time";
 		PreparedStatement ps=conn.prepareStatement(sql);
-		ps.setString(1, title);
+		ps.setInt(1, logid);
 		ResultSet rs=ps.executeQuery();
 		if(rs==null)
-			System.out.println("查找失败");
+			System.out.println("log_behavior.java评论查找失败");
 		else
-			System.out.println("查找成功");
+			System.out.println("log_behavior.java评论查找成功");
 		List<log_review> list=getqueryreviewList(rs);
 		conn.close();
 		return list;
@@ -54,26 +55,26 @@ public class log_behavior {
 	     List<log_review> list_r = new ArrayList<log_review>();
 	     while(rs.next()){
 	    	  log_review log_r = new log_review();
-	          log_r.setid(rs.getString(1));
-	          System.out.println(rs.getString(1));
-	          log_r.setdetails(rs.getString(2));
-	          System.out.println(rs.getString(2));
-	          log_r.settitle(rs.getString(3));
-	          System.out.println(rs.getString(3));
+	          log_r.setlogid(rs.getInt("Text_Id"));
+	          log_r.setreview_id(rs.getString("Comment_Id"));
+	          log_r.setreview_details(rs.getString("Comment_Content"));
+	          log_r.setreview_time(rs.getTimestamp("Comment_Time"));
 	          list_r.add(log_r);
 	     }
 	     return list_r;
 	}
-	public String getBytitle(String title) throws Exception{
+	public logInfo getBylogid(int logid) throws Exception{
 		Connection conn=sqlConnection.getCon();
-		String sql="select * from bk_log where logtitle=?";
+		String sql="select * from Text where Text_Id=?";
 		PreparedStatement ps=conn.prepareStatement(sql);
-		ps.setString(1, title);
+		ps.setInt(1, logid);
 		ResultSet rs=ps.executeQuery();
-		String details=null;
+		logInfo log = new logInfo();
 		if(rs.next()){
-			details =rs.getString("rootlog");
+			log.setlogid(logid);
+			log.setdetails(rs.getString("Text_Content"));
+			log.settitle(rs.getString("Text_Title"));
 		}
-		return details;
+		return log;
 	}
 }

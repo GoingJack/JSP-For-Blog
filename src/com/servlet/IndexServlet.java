@@ -27,20 +27,12 @@ public class IndexServlet extends HttpServlet {
 		if(session.getAttribute("userid")==null){ 
 			response.getWriter().print("您还未登陆，请<a href='index.jsp'>登陆</a>"); 
 			}
-		else if(session.getAttribute("userid").equals("admin")){ 
-			//5.创建Cookie对象用来保存Session的id 
-			Cookie cookie=new Cookie("USERSESSIONID",(String) session.getAttribute("userid")); 
-			cookie.setMaxAge(30*60); 
-			cookie.setPath("/nblog");
-			response.addCookie(cookie); 
-			response.sendRedirect("root_beginshow.jsp"); 
-			}
 		else{
 			Cookie cookie=new Cookie("USERSESSIONID",(String) session.getAttribute("userid")); 
 			cookie.setMaxAge(30*60); 
 			cookie.setPath("/nblog");
 			response.addCookie(cookie); 
-			response.sendRedirect("visitor_beginshow.jsp");
+			response.sendRedirect("beginshow.jsp");
 		}
 		} 
 	protected void doPost(HttpServletRequest request,
