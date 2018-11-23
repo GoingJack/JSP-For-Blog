@@ -56,7 +56,6 @@ public class RootLoginServlet extends HttpServlet {
 			
 		}
 		else if(rootpwd == null || "".equals(rootpwd)){
-			//out1.println("密码不能为空");
 			out1.println("<script>alert('密码不能为空')</script>");
 			out1.println("<a href='root_login.jsp'>点击此处返回登陆界面</a>");
 			

@@ -23,6 +23,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+    <style type="text/css">    
+     body{    
+        background-image: url(src/bkground.jpg);    
+        background-size:cover;  
+     }    
+ </style> 
     <center><h1>游客注册</h1></center>
     <form action="VisitorServlet" method="post">
     	<table align="center" width="500">

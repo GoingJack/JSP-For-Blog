@@ -23,6 +23,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
  <body>
+   <style type="text/css">    
+     body{    
+        background-image: url(src/bkground.jpg);    
+        background-size:cover;  
+     }    
+ </style> 
   <a href="LogoutServlet">退出</a>
     <% request.setCharacterEncoding("GB18030");
 			response.setCharacterEncoding("GB18030");%>

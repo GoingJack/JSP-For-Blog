@@ -23,6 +23,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+    <style type="text/css">    
+     body{    
+        background-image: url(src/bkground.jpg);    
+        background-size:cover;  
+     }    
+ </style> 
   <a href="index.jsp">返回主页</a>
   	<center><h1>博主登录</h1></center>
     <form action="RootLoginServlet" method="post">

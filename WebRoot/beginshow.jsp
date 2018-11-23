@@ -23,6 +23,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   <body>
+    <style type="text/css">    
+     body{    
+        background-image: url(src/bkground.jpg);    
+        background-size:cover;  
+     }    
+ </style> 
   <a href="LogoutServlet">退出</a>
   <center>
 	<%	if(request.getSession().getAttribute("userid")!=null)
@@ -33,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			{
 	%>
 			<h2>登陆成功</h2>
-			<h2>欢迎<font color="red" size="12">
+			<h2>欢迎<font color="green" size="10">
 				<%=request.getSession().getAttribute("userid")%>
 			</font>回到博客</h2>
 			<h4><a href="log.jsp">点击进入我的日志</a></h4>
@@ -46,16 +52,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h2>欢迎<font color="red" size="12">
 				<%=request.getSession().getAttribute("userid")%>
 			</font>来到<%=request.getSession().getAttribute("rootid")%>的博客</h2>
-			<h4><a href="log.jsp">点击进入他的日志</a></h4>
+			<h4><a href="log.jsp">1、点击进入他的日志</a></h4>
+			<h4><a href="vi_change.jsp">2、修改个人信息</a></h4>
 		<%	}
 		}
 		else
 		{
 			// 用户未登陆，提示用户登陆，并跳转
-			response.setHeader("refresh","2;URL=index.jsp") ;
+			response.setHeader("refresh","5;URL=index.jsp") ;
 	%>
 			您还未登陆，请先登陆！！！<br>
-			两秒后自动跳转到登陆窗口！！！<br>
+			五秒秒后自动跳转到登陆窗口！！！<br>
 			如果没有跳转，请按<a href="index.jsp">这里</a>！！！<br>
 	<%
 		}

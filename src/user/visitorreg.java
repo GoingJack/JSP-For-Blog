@@ -1,6 +1,7 @@
 package user;
 import java.sql.Connection; 
-import java.sql.PreparedStatement; 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException; 
 import dbcon.sqlConnection; 
 import user.UserInfomation;
@@ -31,5 +32,27 @@ public class visitorreg {
 			e.printStackTrace();
 		}
 	return false;
+	}
+	public boolean isSameidVisitor(UserInfomation user){
+		Connection conn=null;
+		boolean flag=false;
+		try{
+			conn = sqlConnection.getCon();
+			if(conn==null)
+				return false;
+			String sql="select * from Visitor_Information where VisitorId=?";
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, user.getUserid());
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				if((user.getUserid().equals(rs.getString("VisitorId"))))
+				{
+					flag = true;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	return flag;
 	}
 }

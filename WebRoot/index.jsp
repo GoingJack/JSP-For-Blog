@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>欢迎访问</title>
-	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="pragma" content="no-cache"><!--把 content 属性关联到 HTTP 头部。-->
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
@@ -19,11 +19,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   </head>
-  
-  <body >		
-    <center><h1>欢迎访问我的个人博客</h1><br>
-    <h3><a href="root_login.jsp">博主登录</a></h3>
-    <h3><a href="visitor_login.jsp">游客登录</a></h3>
-    <h3><a href="visitor_reg.jsp">游客注册</a></h3></center>
+  <style type="text/css">    
+     body{    
+        background-image: url(src/bkground.jpg);    
+        background-size:cover;  
+     }    
+ </style> 
+  <body>		
+    <center><h2>欢迎访问我的个人博客</h2><br></center>
+    <center>
+    <br>
+    <br>
+    <table cellpadding="30" >
+		<tr>
+		<td ><h3><a href="root_login.jsp"><font size=5>博主登录     </font></a></h3></td>
+		<td > <h3><a href="visitor_login.jsp"><font size=5>游客登录     </font></a></h3></td>
+		<td ><h3><a href="visitor_reg.jsp"><font size=5>游客注册</font></a></h3></td>
+		</tr>
+</table></center>
   </body>
 </html>

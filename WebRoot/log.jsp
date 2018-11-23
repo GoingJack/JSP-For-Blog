@@ -22,6 +22,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 	
   <body>
+    <style type="text/css">    
+     body{    
+        background-image: url(src/bkground.jpg);    
+        background-size:cover;  
+     }    
+ </style> 
   <a href="LogoutServlet">退出</a>
   <%	request.setCharacterEncoding("GB18030");
   		response.setCharacterEncoding("GB18030"); %>
@@ -31,11 +37,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		if(request.getSession().getAttribute("userid")==null)
 		{
 			// 用户未登陆
-			response.setHeader("refresh","2;URL=index.jsp") ;
+			response.setHeader("refresh","5;URL=index.jsp") ;
 	%>
 	
 			您还未登陆，请先登陆！！！<br>
-			两秒后自动跳转到登陆窗口！！！<br>
+			五秒后自动跳转到登陆窗口！！！<br>
 			如果没有跳转，请按<a href="index.jsp">这里</a>！！！<br>
 	<%	}
 	else{
@@ -48,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 			%>
     	<form action="log.jsp" method="post">
-    		<table style="width: 500px;" border=3>
+    		<table style="width: 500px;" border=1>
     			<tr>
     				<td align="center">日志列表</td>
     			</tr>
