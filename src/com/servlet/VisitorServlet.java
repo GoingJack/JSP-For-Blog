@@ -127,10 +127,20 @@ public class VisitorServlet extends HttpServlet {
 		visitor.setUserid(visitorid);
 		visitor.setUserpwd(visitorpwd);
 		visitor.setUsername(visitorname);
-		boolean flag = visitorreg.getinstance().saveVisitor(visitor);	//将游客注册信息保存到数据库
 		PrintWriter out = response.getWriter();
+		boolean flag1 = visitorreg.getinstance().isSameidVisitor(visitor);   
+		
+		
+		boolean flag=visitorreg.getinstance().saveVisitor(visitor);//将游客注册信息保存到数据库
+		
 		//注册结果
-		if(visitorid==null||"".equals(visitorid))
+		if(flag1==true)
+		{
+			out.println("<script>alert('你要申请的id已经存在请重新填写！')</script>");
+			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
+			out.println("两秒后自动跳转到游客注册界面！！！");
+		}
+		else if(visitorid==null||"".equals(visitorid))
 		{
 			out.println("<script>alert('用户id不能为空')</script>");
 			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;

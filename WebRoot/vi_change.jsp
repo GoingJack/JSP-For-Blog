@@ -7,10 +7,39 @@
 <title>Insert title here</title>
 </head>
 <body>
-<center>
-<table>
-<tr>
-<td>修改的名字</td><td><input type="text" name="vi_changeid"></td>
-</center>
+ <style type="text/css">    
+     body{    
+        background-image: url(src/bkground.jpg);    
+        background-size:cover;  
+     }    
+ </style> 
+  <a href="index.jsp">返回首页</a>
+    <center><h1>游客修改个人信息</h1></center>
+    <form action="VisitorServlet" method="post">
+    	<table align="center" width="500">
+    		<tr>
+    			<td align="right" width="30%">用户名</td>
+    			<td><input type="text" class="box" name="visitorid"></td>
+    		</tr>
+    		<tr>
+    			<td align="right" width="30%">密码</td>
+    			<td><input type="password" class="box" name="visitorpwd"></td>
+    		</tr>
+    		<tr>
+    			<td align="right" width="30%">确认密码</td>
+    			<td><input type="password" class="box" name="revisitorpwd"></td>
+    		</tr>
+    		<tr>
+    			<td align="right" width="30%">昵称</td>
+    			<td><input type="text" class="box" name="visitorname"></td>
+    		</tr>
+    		<tr>
+    			<td colspan="2" align="center">
+    				<input type="submit" value="注册" onclick="isNull">
+    				<input type="reset" value="重置">
+  				</td>
+  			</tr>
+  		</table>
+  	</form>  
 </body>
 </html>

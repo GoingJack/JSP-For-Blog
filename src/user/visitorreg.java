@@ -55,4 +55,18 @@ public class visitorreg {
 		}
 	return flag;
 	}
+	public boolean changeVipassword(UserInfomation user){
+		Connection conn=null;
+		try{
+			conn = sqlConnection.getCon();
+			String sql="insert into Visitor_Information(VisitorPasswd)"+"values(?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(2, user.getUserpwd());
+			ps.executeUpdate();
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	return false;
+	}
 }

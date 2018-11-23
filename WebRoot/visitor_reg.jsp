@@ -29,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         background-size:cover;  
      }    
  </style> 
+  <a href="index.jsp">返回首页</a>
     <center><h1>游客注册</h1></center>
     <form action="VisitorServlet" method="post">
     	<table align="center" width="500">
