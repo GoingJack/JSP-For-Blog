@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dbcon.sqlConnection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 /**
  * Servlet implementation class changeVisitorInformation
@@ -44,20 +43,20 @@ public class changeInformation extends HttpServlet {
 		String c_visitorname=request.getParameter("c_visitorname");
 		PrintWriter out = response.getWriter();
 		//修改验证
-		if(c_visitorpwd==null||"".equals(c_visitorpwd)) {
-			out.println("<script>alert('修改密码不能为空')</script>");
-			out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
-		}
-		else if(!c_visitorpwd.equals(c_revisitorpwd))
-		{
-			out.println("<script>alert('俩次输入的密码不一致请重新输入')</script>");
-			out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
-		}
-		else if(c_visitorname==null||"".equals(c_visitorname))
-		{
-			out.println("<script>alert('修改昵称不能为空')</script>");
-			out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
-		}
+//		if(c_visitorpwd==null||"".equals(c_visitorpwd)) {
+//			out.println("<script>alert('修改密码不能为空')</script>");
+//			out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
+//		}
+//		else if(!c_visitorpwd.equals(c_revisitorpwd))
+//		{
+//			out.println("<script>alert('俩次输入的密码不一致请重新输入')</script>");
+//			out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
+//		}
+//		else if(c_visitorname==null||"".equals(c_visitorname))
+//		{
+//			out.println("<script>alert('修改昵称不能为空')</script>");
+//			out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
+//		}
 		//连接数据库
 		try {
 			Connection conn=null;
@@ -102,15 +101,15 @@ public class changeInformation extends HttpServlet {
 				String rc_revisitorpwd=request.getParameter("rc_revisitorpwd");
 				PrintWriter out = response.getWriter();
 				//修改验证
-				if(rc_visitorpwd==null||"".equals(rc_visitorpwd)) {
-					out.println("<script>alert('修改密码不能为空')</script>");
-					out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
-				}
-				else if(!rc_visitorpwd.equals(rc_revisitorpwd))
-				{
-					out.println("<script>alert('俩次输入的密码不一致请重新输入')</script>");
-					out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
-				}
+//				if(rc_visitorpwd==null||"".equals(rc_visitorpwd)) {
+//					out.println("<script>alert('修改密码不能为空')</script>");
+//					out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
+//				}
+//				else if(!rc_visitorpwd.equals(rc_revisitorpwd))
+//				{
+//					out.println("<script>alert('俩次输入的密码不一致请重新输入')</script>");
+//					out.println("<a href='vi_change.jsp'>点击此处返回修改界面</a>");
+//				}
 				//连接数据库
 				try {
 					Connection conn=null;

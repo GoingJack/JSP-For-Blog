@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse; 
 import javax.servlet.http.HttpSession; 
 
-import user.UserInfomation;
 
 @WebServlet(name="indexServlet",urlPatterns="/IndexServlet")
 //1.创建IndexServlet显示网站的首界面 

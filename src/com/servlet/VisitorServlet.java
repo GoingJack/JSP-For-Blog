@@ -140,24 +140,24 @@ public class VisitorServlet extends HttpServlet {
 			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
 			out.println("两秒后自动跳转到游客注册界面！！！");
 		}
-		else if(visitorid==null||"".equals(visitorid))
-		{
-			out.println("<script>alert('用户id不能为空')</script>");
-			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
-			out.println("两秒后自动跳转到游客注册界面！！！");
-		}
-		else if (visitorpwd==null||"".equals(visitorpwd))
-		{
-			out.println("<script>alert('用户密码不能为空')</script>");
-			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
-			out.println("两秒后自动跳转到游客注册界面！！！");
-		}
-		else if (!visitorpwd.equals(revisitorpwd))
-		{
-			out.println("<script>alert('俩次输入的密码不一致请重新输入')</script>");
-			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
-			out.println("两秒后自动跳转到游客注册界面！！！");
-		}
+//		else if(visitorid==null||"".equals(visitorid))
+//		{
+//			out.println("<script>alert('用户id不能为空')</script>");
+//			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
+//			out.println("两秒后自动跳转到游客注册界面！！！");
+//		}
+//		else if (visitorpwd==null||"".equals(visitorpwd))
+//		{
+//			out.println("<script>alert('用户密码不能为空')</script>");
+//			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
+//			out.println("两秒后自动跳转到游客注册界面！！！");
+//		}
+//		else if (visitorpwd.equals(revisitorpwd))
+//		{
+//			out.println("<script>alert('俩次输入的密码不一致请重新输入')</script>");
+//			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
+//			out.println("两秒后自动跳转到游客注册界面！！！");
+//		}
 		else
 		{
 			boolean flag=visitorreg.getinstance().saveVisitor(visitor);//将游客注册信息保存到数据库

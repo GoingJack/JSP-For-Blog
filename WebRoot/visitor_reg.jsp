@@ -10,6 +10,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>游客注册</title>
+    <script src=./src/isRight.js>
+    </script>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,35 +21,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
->
+
   </head>
-  
-  <body>
-    <style type="text/css">    
+   <style type="text/css">    
      body{    
         background-image: url(src/bkground.jpg);    
         background-size:cover;  
      }    
  </style> 
+  <body>
+   
   <a href="index.jsp">返回首页</a>
     <center><h1>游客注册</h1></center>
-    <form action="VisitorServlet" method="post">
-    	<table align="center" width="500">
+    <form action="VisitorServlet" method="post" onsubmit="return checkAll()">
+    	<table  align="center" width="500">
     		<tr>
     			<td align="right" width="30%">用户名</td>
-    			<td><input type="text" class="box" name="visitorid"></td>
+    			<td><input type="text" class="box" name="visitorid" id="visitorid" onblur=checkName()></td>
+    			<td ><p id="namespan"></p></td>
     		</tr>
     		<tr>
     			<td align="right" width="30%">密码</td>
-    			<td><input type="password" class="box" name="visitorpwd"></td>
+    			<td><input type="password" class="box" name="visitorpwd" id="password" onblur=checkPasswd()></td>
+    			<td ><p id="passwdspan"></p></td>
     		</tr>
     		<tr>
     			<td align="right" width="30%">确认密码</td>
-    			<td><input type="password" class="box" name="revisitorpwd"></td>
+    			<td><input type="password" class="box" name="revisitorpwd" id="repassword" onblur=checkSame()></td>
+    			<td ><p id="repasswdspan"></p></td>
     		</tr>
     		<tr>
     			<td align="right" width="30%">昵称</td>
-    			<td><input type="text" class="box" name="visitorname"></td>
+    			<td><input type="text" class="box" name="visitorname" id="Nicheng" onblur=checkNicheng()></td>
+    			<td ><p id="Nichengspan"></p></td>
     		</tr>
     		<tr>
     			<td colspan="2" align="center">
