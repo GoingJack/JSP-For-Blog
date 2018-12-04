@@ -131,7 +131,7 @@ public class VisitorServlet extends HttpServlet {
 		boolean flag1 = visitorreg.getinstance().isSameidVisitor(visitor);   
 		
 		
-		boolean flag=visitorreg.getinstance().saveVisitor(visitor);//将游客注册信息保存到数据库
+		
 		
 		//注册结果
 		if(flag1==true)
@@ -152,21 +152,25 @@ public class VisitorServlet extends HttpServlet {
 			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
 			out.println("两秒后自动跳转到游客注册界面！！！");
 		}
-		else if (visitorpwd.equals(revisitorpwd))
+		else if (!visitorpwd.equals(revisitorpwd))
 		{
 			out.println("<script>alert('俩次输入的密码不一致请重新输入')</script>");
 			response.setHeader("refresh","2;URL=visitor_reg.jsp") ;
 			out.println("两秒后自动跳转到游客注册界面！！！");
 		}
-		else if(flag){
-			out.println("注册成功");
-			response.setHeader("refresh","2;URL=visitor_login.jsp") ;
-			out.println("两秒后自动跳转到游客登录界面！！！");
-		}
-		else{
-			out.println("注册失败，游客信息未写入数据库");
-			response.setHeader("refresh","2;URL=index.jsp") ;
-			out.println("两秒后自动跳转到首页！！！");
+		else
+		{
+			boolean flag=visitorreg.getinstance().saveVisitor(visitor);//将游客注册信息保存到数据库
+			 if(flag){
+				out.println("注册成功");
+				response.setHeader("refresh","2;URL=visitor_login.jsp") ;
+				out.println("两秒后自动跳转到游客登录界面！！！");
+			}
+			else{
+				out.println("注册失败，游客信息未写入数据库");
+				response.setHeader("refresh","2;URL=index.jsp") ;
+				out.println("两秒后自动跳转到首页！！！");
+			}
 		}
 		out.flush();
 		out.close();

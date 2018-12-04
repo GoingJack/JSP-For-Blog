@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>个人信息修改</title>
 </head>
 <body>
- <style type="text/css">    
+<style type="text/css">    
      body{    
         background-image: url(src/bkground.jpg);    
         background-size:cover;  
@@ -19,19 +19,15 @@
     	<table align="center" width="500">
     		<tr>
     			<td align="right" width="30%">用户名</td>
-    			<td><input type="text" class="box" name="c_visitorid" readOnly="readonly" value=<%=request.getSession().getAttribute("userid") %>></td>
+    			<td><input type="text" class="box" name="rc_visitorid" readOnly="readonly" value=<%=request.getSession().getAttribute("userid") %>></td>
     		</tr>
     		<tr>
     			<td align="right" width="30%">密码</td>
-    			<td><input type="password" class="box" name="c_visitorpwd"></td>
+    			<td><input type="password" class="box" name="rc_visitorpwd"></td>
     		</tr>
     		<tr>
     			<td align="right" width="30%">确认密码</td>
-    			<td><input type="password" class="box" name="c_revisitorpwd"></td>
-    		</tr>
-    		<tr>
-    			<td align="right" width="30%">昵称</td>
-    			<td><input type="text" class="box" name="c_visitorname"></td>
+    			<td><input type="password" class="box" name="rc_revisitorpwd"></td>
     		</tr>
     		<tr>
     			<td colspan="2" align="center">

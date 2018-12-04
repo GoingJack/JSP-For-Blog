@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         background-size:cover;  
      }    
  </style> 
-  <a href="LogoutServlet">ÍË³ö</a>
+  <a href="LogoutServlet">·µ»ØÖ÷Ò³</a>
   		<% request.setCharacterEncoding("GB18030");
 			response.setCharacterEncoding("GB18030");%>
   <center>

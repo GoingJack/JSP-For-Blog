@@ -73,7 +73,7 @@ public class RootLoginServlet extends HttpServlet {
 		try {
 			if(flag){ //验证通过
 				request.getSession().setAttribute("userid",root.getUserid());
-				
+				request.getSession().setAttribute("rootid",root.getUserid());
 				response.sendRedirect("IndexServlet"); //跳转
 			}else{
 				out1.print("<script>alert('登陆失败,用户名或者密码错误！！！')</script>");

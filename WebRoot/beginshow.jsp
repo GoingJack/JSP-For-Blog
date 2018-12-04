@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         background-size:cover;  
      }    
  </style> 
-  <a href="LogoutServlet">退出</a>
+  <a href="LogoutServlet">返回主页</a>
   <center>
 	<%	if(request.getSession().getAttribute("userid")!=null)
 		{
@@ -40,9 +40,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	%>
 			<h2>登陆成功</h2>
 			<h2>欢迎<font color="green" size="10">
-				<%=request.getSession().getAttribute("userid")%>
 			</font>回到博客</h2>
 			<h4><a href="log.jsp">点击进入我的日志</a></h4>
+			<h4><a href="changeRoot.jsp">修改我的密码</a></h4>
 	<%
 			}
 			else
