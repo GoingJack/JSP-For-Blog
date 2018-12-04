@@ -15,7 +15,7 @@
  </style> 
 <body>
 <a href="index.jsp">返回首页</a>
-<center><h1>游客修改个人信息</h1></center>
+<center><h1>博主修改个人信息</h1></center>
     <form action="changeInformation" method="post" onsubmit="return checkAll()">
     	<table align="center" width="500">
     		<tr>
